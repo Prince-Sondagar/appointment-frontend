@@ -1,0 +1,12 @@
+/* @tailwind base; */
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f0f0f0; 
+  --foreground: #333333; 
+}
+
+.error-message{
+  color: red;
+}

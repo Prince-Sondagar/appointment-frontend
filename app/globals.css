@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+*{
+  margin: 0;
+  padding: 0;
+}
+
 :root {
   --background: #f0f0f0; 
   --foreground: #333333; 
@@ -9,4 +14,16 @@
 
 .error-message{
   color: red;
+}
+
+.sidebar-item {
+  @apply text-lg text-gray-600 px-2 py-2 rounded-md cursor-pointer transition-colors 
+}
+
+.sidebar-item:hover {
+  @apply bg-gray-200 text-gray-800
+}
+
+.sidebar-item-active {
+  @apply bg-blue-500 text-white text-lg px-2 py-2 rounded-md cursor-pointer transition-colors;
 }

@@ -16,3 +16,12 @@ export type signUpUserInput = {
     termsAndCondition: boolean;
     profileImage: any,
 };
+
+
+export type User = {
+    firstName: string;
+    lastName: string;
+    email: string;
+    dateOfBirth: string;
+    profileImage: string
+}

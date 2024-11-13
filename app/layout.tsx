@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import AuthContextProvider from "./contexts/AuthContext";
 
 
 export const metadata: Metadata = {
@@ -28,7 +29,9 @@ export default function RootLayout({
           // pauseOnHover
           theme="light"
         />
-        {children}
+        <AuthContextProvider>
+          {children}
+        </AuthContextProvider>
       </body>
     </html>
   );

@@ -4,12 +4,15 @@ import Toast from "../components/toast";
 import { loginUserInput } from "../types";
 import axiosClient from "../utils/axiosClient";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../contexts/AuthContext";
 
 
 const useAuth = () => {
     const router = useRouter();
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
+    const { user, setIsLoggedIn } = useContext(AuthContext);
+
 
     const login = async (data: loginUserInput) => {
         try {
@@ -19,7 +22,8 @@ const useAuth = () => {
                 throw new Error(response?.data?.message)
             }
             await setCookie('token', response.data.token);
-            setLoading(false)
+            setLoading(false);
+            setIsLoggedIn(true);
             Toast.success(response.data.message);
             router.push('/dashboard');
 
@@ -55,7 +59,8 @@ const useAuth = () => {
     return {
         loading,
         login,
-        signUp
+        signUp,
+        user
     };
 };
 

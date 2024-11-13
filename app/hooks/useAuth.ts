@@ -22,11 +22,10 @@ const useAuth = () => {
                 throw new Error(response?.data?.message)
             }
             await setCookie('token', response.data.token);
-            setLoading(false);
-            setIsLoggedIn(true);
             Toast.success(response.data.message);
+            setIsLoggedIn(true);
+            setLoading(false);
             router.push('/dashboard');
-
         } catch (error: any) {
             setLoading(false);
             Toast.error(error?.response?.data?.message ?? "Something went wrong");

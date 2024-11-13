@@ -1,10 +1,9 @@
 "use client"
 
-import React, { createContext, use, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { User } from "../types";
 import axiosClient from "../utils/axiosClient";
 import Toast from "../components/toast";
-import PageLoader from "next/dist/client/page-loader";
 import Loader from "../components/loader";
 import { getCookie } from "cookies-next";
 
@@ -20,15 +19,14 @@ export const AuthContext = createContext<IAuthContextType>({
 
 const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
     const [user, setUser] = useState<User | null>(null);
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [isLoggedIn, setIsLoggedIn] = useState(!!getCookie('token'));
     const [loading, setLoading] = useState(false);
-
 
     const getCurrentUser = async () => {
         try {
             setLoading(true);
             const response = await axiosClient.get('/user/me');
-            const user = response?.data
+            const user = response?.data?.user;
             setUser(user);
             setLoading(false);
         } catch (error: any) {
@@ -41,7 +39,7 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
         if (isLoggedIn) {
             getCurrentUser();
         }
-    }, [user, isLoggedIn]);
+    }, [isLoggedIn]);
 
     return (
         <>

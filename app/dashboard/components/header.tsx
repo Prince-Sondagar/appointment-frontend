@@ -1,7 +1,6 @@
 "use client"
 
 import useAuth from "@/app/hooks/useAuth";
-import Image from "next/image";
 
 const Header = () => {
     const { user } = useAuth();
@@ -14,7 +13,7 @@ const Header = () => {
                     <h1 className="text-xl font-semibold text-gray-800 italic">Appointment App</h1>
                 </div>
                 <div className="flex items-center space-x-4">
-                    <span className="text-gray-600">Hello, {user?.firstName}</span>
+                    <span className="text-gray-600 capitalize">Hello, {user?.firstName}</span>
                     <div className="h-10 w-10 rounded-full overflow-hidden border-gray-300  border-solid border-2">
                         <img src='/assets/profileImage.png' alt="User Profile" className="h-10 w-10 object-cover" />
                     </div>

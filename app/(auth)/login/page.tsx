@@ -17,8 +17,7 @@ const Login = () => {
 
 
   const onSubmit = async (data: loginUserInput) => {
-    console.log(data);
-    await login(data);
+   await login(data);
   };
 
   return (
